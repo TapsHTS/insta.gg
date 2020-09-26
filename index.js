@@ -35,7 +35,7 @@ clienti.on('newFollower', async (user) => {
     console.log('| ➜    Nouveau follower !  |')
     console.log('╰───────────────────────────╯')
     if (!user.privateChat) await user.fetchPrivateChat()
-    user.privateChat.sendMessage('🚀 Merci d\'utiliser pro_note_ !')
+    user.privateChat.sendMessage('🚀 Merci d\'utiliser ' + clienti.user.username + ' !')
 });
 
 clienti.on('messageCreate', (message, cachedMessage) => {
