@@ -41,11 +41,12 @@ clienti.on('newFollower', async (user) => {
 clienti.on('messageCreate', (message, cachedMessage) => {
     
     if (message.authorID === clienti.user.id  || !message.content.startsWith(config.prefix)) return;
-    const args = args.join(" ");
+    
     message.args = message.content.slice(config.prefix.length).trim().split(/ +/);
-    const icommandName = message.args.shift().toLowerCase();
+    const args = message.content.slice(config.prefix.length).trim().split(' ');
+	const icommandName = message.args.shift().toLowerCase();
     const icommand = clienti.commands.get(icommandName) || clienti.commands.find(cmd => cmd.aliases && cmd.aliases.includes(icommandName));
-	
+
 	if (!icommand) return;
 	
 	try {
@@ -53,7 +54,25 @@ clienti.on('messageCreate', (message, cachedMessage) => {
 	} catch (error) {
 		console.error(error);
     }
-    clientd.channels.cache.get('615101343778209792').send(`${message.author.username} vient d'envoyer un message à \`${clienti.user.username}\`: ` + message.content)
+
+    message.author.fetch().then(e => {
+        if (message.authorID === clienti.user.id) return
+          const log = new Discord.MessageEmbed()
+              .setAuthor(message.author.username, message.author.avatarURL , 'https://www.instagram.com/' + message.author.username)
+              .setColor('#f34d59')
+              .addField('Message:', message.content, true)
+              .addFields(
+                { name: 'Pseudo:', value: `${message.author.username}`},
+                { name: 'ID:', value: `${message.author.id}`, inline: false },
+                { name: 'Abonnés:', value: `${message.author.followerCount}`, inline: true},
+                { name: 'Abonnements:', value: `${message.author.followingCount}`, inline: true},
+              )
+            clientd.channels.cache.find(channel => channel.name === "logs").send(log)
+              })
+          if (message.authorID === clienti.user.id || !message.content.startsWith(config.prefix)) return
+      
+          message.markSeen();
+      
 
     message.markSeen();
 
@@ -94,7 +113,7 @@ clientd.on('ready', () => {
     console.log('╭───────────────────────────╮')
     console.log(`➜ Connecté sur ` + chalk.blue(`${clientd.user.username}`));
     clientd.user.setStatus("dnd");
-    clientd.user.setActivity("p!insta");
+    clientd.user.setActivity(config.prefix + "insta");
       return (console.error);   
 
     
@@ -108,7 +127,7 @@ clientd.on('message', (message) => {
         const dcommand = args.shift().toLowerCase();
         
         if (!clientd.commands.has(dcommand)) return;
-        clientd.commands.get(dcommand).execute(message, args);
+        clientd.commands.get(dcommand).execute(message, args, clienti, clientd);
 });
 
 
