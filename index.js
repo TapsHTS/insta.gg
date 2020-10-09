@@ -41,15 +41,15 @@ clienti.on('newFollower', async (user) => {
 clienti.on('messageCreate', (message, cachedMessage) => {
     
     if (message.authorID === clienti.user.id  || !message.content.startsWith(config.prefix)) return;
-    
+    const args = args.join(" ");
     message.args = message.content.slice(config.prefix.length).trim().split(/ +/);
-	const icommandName = message.args.shift().toLowerCase();
+    const icommandName = message.args.shift().toLowerCase();
     const icommand = clienti.commands.get(icommandName) || clienti.commands.find(cmd => cmd.aliases && cmd.aliases.includes(icommandName));
-
+	
 	if (!icommand) return;
 	
 	try {
-		icommand.execute(message, clienti);
+		icommand.execute(message, clienti, args);
 	} catch (error) {
 		console.error(error);
     }
