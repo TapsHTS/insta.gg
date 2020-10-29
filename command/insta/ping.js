@@ -1,7 +1,7 @@
 module.exports = {
 	name: `ping`,
 	description: 'Ping!',
-    execute(message, clienti) {
+    execute(message, clienti, args) {
 	    
 	const start = Date.now();
 		 message.chat.sendMessage('📊 Test de latence...').then(() => {
