@@ -27,7 +27,7 @@ clienti.on('connected', () => {
     
     console.log(' ')
     console.log(`➜ Connecté sur ` + chalk.green(`${clienti.user.username}`));
-    console.log('╰────────────────────────────╯')
+    console.log('╰─────────────────────────────╯')
 });
 
 clienti.on('newFollower', async (user) => {
@@ -110,7 +110,7 @@ for (const file of DcommandFiles) {
 
 clientd.on('ready', () => {
     console.log(' ')
-    console.log('╭───────────────────────────╮')
+    console.log('╭─────────────────────────────╮')
     console.log(`➜ Connecté sur ` + chalk.blue(`${clientd.user.username}`));
     clientd.user.setStatus("dnd");
     clientd.user.setActivity(config.prefix + "insta");
