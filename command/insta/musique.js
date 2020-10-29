@@ -18,7 +18,10 @@ module.exports = {
       .on('end', () => {
         message.chat.sendVoice(Buffer.concat(array));
       })
-        })
+        }).catch((err) => {
+            err = err.toString();
+            message.chat.sendMessage('⛔' + err);
+        });
 
 	},
 };
