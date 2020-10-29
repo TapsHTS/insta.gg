@@ -1,7 +1,7 @@
 module.exports = {
     name: 'info',
     description: 'Donne des infos sur la personne',
-    execute(message, clienti) {
+    execute(message, clienti, args) {
         message.chat.sendMessage('Recherche des informations...').then(() => {
             message.author.fetch().then(e => {
             message.chat.sendMessage(
