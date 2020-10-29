@@ -3,7 +3,7 @@ const util = require('util')
 module.exports = {
 	name: `eval`,
 	description: 'Evalute your command',
-    execute(message, clienti) {
+    execute(message, clienti, args) {
 
 if (parseInt(message.author.id) !== parseInt(config.ownerid)) return message.chat.sendMessage(`Command interdite !`)
         let result = new Promise((resolve) => resolve(eval(args.join(` `))));
