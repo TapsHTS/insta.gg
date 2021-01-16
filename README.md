@@ -2,6 +2,8 @@
 
 💬 An Instagram Bot [Androz](https://www.npmjs.com/package/@androz2091/insta.js)'s Instagram library and discord.js 
 
+insta.js x discord.js
+
 ## How to install?
 
 ```js
