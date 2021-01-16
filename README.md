@@ -12,9 +12,9 @@ cd insta.gg
 npm i
 ```
 config [config.json](https://github.com/TapsHTS/insta.gg/blob/master/README.md#configuration)
+
 ```js
 node index.js
-
 ```
 
 ## Configuration
@@ -32,6 +32,4 @@ node index.js
 
 ## Credits
 
-🧡 Big thanks to **[Androz](https://github.com/Androz2091)** for the librarie.
-# insta.gg
-
+🧡 Big thanks to **[Androz](https://github.com/Androz2091)** for the library.
